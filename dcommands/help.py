@@ -33,15 +33,15 @@ Argument format of [st] [ed] is `HH:MM`.
 To specifying same time, disable closing time.
 -- example: `!ncs cl 0:00 0:00`"""
 
-HELP_MES = discord.Embed(title=":notebook: Help of Full-Auto NCS :musical_note:", color=0xa3ff66)
+HELP_MES = discord.Embed(title=":notebook: Help of :musical_note:", color=0xa3ff66)
 HELP_MES.add_field(name=":desktop: Useage", value="`!ncs <sub command>`", inline=False)
 HELP_MES.add_field(name=":page_with_curl: List of subcommands", value=HELP_MES_SCMD, inline=False)
 HELP_MES.add_field(name=":u55b6: About closed time", value=HELP_MES_CLTM, inline=False)
-HELP_MES.set_footer(text="Full-Auto NCS")
 
 
 # Function definitions
 async def help(message: discord.Message, name: str):
   HELP_MES.title = ":notebook: Help of %s :musical_note:" % name
+  HELP_MES.set_footer(text=name)
   await message.reply(embed=HELP_MES)
   return
