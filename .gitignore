@@ -1,0 +1,10 @@
+# .gitignore
+#
+# Author: akuad
+#
+# Published with CC0 license
+#
+
+__pycache__
+conf.json
+*.mp3
