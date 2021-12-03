@@ -24,8 +24,22 @@ INFO_MES = \
 
 # Function definitions
 async def info(message: Message, vcls: DiscordVClients):
+  # User's voice connection check
+  if message.author.voice == None:
+    await message.reply(":stop_sign: You aren't connected to voice channel. Aborting.")
+    return
+
+  # Bot's voice connection check
+  if message.guild.voice_client == None or not vcls.isVCliExist(message.guild.id):
+    await message.reply(":stop_sign: Not connected to voice channel yet. Aborting.")
+    return
+
   # Get music metadata
   mdata = information(vcls.getVCliCurMusic(message.guild.id))
+
+  # If voice client is not available
+  if mdata == None:
+    await message.reply(":stop_sign: Something went wrong.")
 
   # Message reply
   await message.reply(INFO_MES.format(mdata.get("File:FileName"),
