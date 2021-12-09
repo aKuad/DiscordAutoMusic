@@ -53,6 +53,7 @@ class DiscordVClients:
         return False
     # Voice client add
     self.__clients[gid] = {"vCli": vCli, "mVol": mVol, "mCur": "", "cEn": False, "cSt": time(0, 0), "cEd": time(0, 0)}
+    print("A voice client created. Count: %d" % len(self.__clients))
     return True
 
 
@@ -72,6 +73,7 @@ class DiscordVClients:
       # When playing, stop
       if vc["vCli"].is_playing():
         vc["vCli"].stop()
+      print("A voice client deleted. Count: %d" % len(self.__clients))
       return True
     else:
       return False
@@ -145,17 +147,22 @@ class DiscordVClients:
 
   # function - Check now is closing time
   def __isCloseTime(self, cst: time, ced: time):
+    # Get current time in jp (+09:00)
     tnw_ut = datetime.now(timezone.utc)
     tnw_jp = tnw_ut + timedelta(hours=9)
     tnw = time(tnw_jp.hour, tnw_jp.minute)
+    # Check
     if cst == ced:
+      # If specified time is same
       return False
     elif cst < ced:
+      # If start time is faster than end time
       if cst < tnw and tnw < ced:
         return True
       else:
         return False
     else:
+      # If not
       if cst < tnw or tnw < ced:
         return True
       else:
@@ -164,13 +171,21 @@ class DiscordVClients:
 
   # method - Play trigger
   def trigPlay(self, arg1, arg2):
-    for cCli in self.__clients.values():
-      if not cCli["vCli"].is_playing():
-        if cCli["cEn"] and self.__isCloseTime(cCli["cSt"], cCli["cEd"]) and self.__mClose != "":
-          cCli["mCur"] = self.__mClose
+    # Loop each clients
+    for cgid in self.__clients:
+      # If not playing
+      if not self.__clients[cgid]["vCli"].is_playing():
+        # Set next music
+        if self.__clients[cgid]["cEn"] and self.__isCloseTime(self.__clients[cgid]["cSt"], self.__clients[cgid]["cEd"]) and self.__mClose != "":
+          self.__clients[cgid]["mCur"] = self.__mClose
         else:
-          cCli["mCur"] = self.__mList[randint(0, len(self.__mList) - 1)]
-        pObj = discord.FFmpegPCMAudio(cCli["mCur"])
-        pObj = discord.PCMVolumeTransformer(pObj, volume=cCli["mVol"])
-        cCli["vCli"].play(pObj)
+          self.__clients[cgid]["mCur"] = self.__mList[randint(0, len(self.__mList) - 1)]
+        # Try to play
+        try:
+          pObj = discord.FFmpegPCMAudio(self.__clients[cgid]["mCur"])
+          pObj = discord.PCMVolumeTransformer(pObj, volume=self.__clients[cgid]["mVol"])
+          self.__clients[cgid]["vCli"].play(pObj)
+        except:
+          self.__clients.pop()
+          print("A voice client lost because of something went wrong. Count: %d" % len(self.__clients))
     return
