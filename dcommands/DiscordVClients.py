@@ -28,7 +28,7 @@ class DiscordVClients:
   def __init__(self, mPath: str, mPathClose: str, mVolDef: float):
     # Field variables setting
     self.__mList = run("ls %s" % mPath, shell=True, stdout=PIPE)
-    self.__mList = self.__mList.stdout.decode("UTF-8").split("\n")
+    self.__mList = self.__mList.stdout.decode("UTF-8").strip().split("\n")
     self.__mClose = mPathClose
     self.__mVolDef = mVolDef
     self.mCount = len(self.__mList)
