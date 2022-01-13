@@ -29,19 +29,20 @@ HELP_MES_SCMD = \
 HELP_MES_CLTM = \
 """Between the time [st] to [ed], music will be play only closing music.
 Argument format of [st] [ed] is `HH:MM`.
--- example: `!ncs cl 1:00 7:00`
+-- example: `{} cl 1:00 7:00`
 To disable closing time, specify same time.
--- example: `!ncs cl 0:00 0:00`"""
-
-HELP_MES = discord.Embed(title=":notebook: Help of :musical_note:", color=0xa3ff66)
-HELP_MES.add_field(name=":desktop: Useage", value="`!ncs <sub command>`", inline=False)
-HELP_MES.add_field(name=":page_with_curl: List of subcommands", value=HELP_MES_SCMD, inline=False)
-HELP_MES.add_field(name=":u55b6: About closed time", value=HELP_MES_CLTM, inline=False)
+-- example: `{} cl 0:00 0:00`"""
 
 
 # Function definitions
-async def help(message: discord.Message, name: str):
-  HELP_MES.title = ":notebook: Help of %s :musical_note:" % name
-  HELP_MES.set_footer(text=name)
-  await message.reply(embed=HELP_MES)
+async def help(message: discord.Message, name: str, prefix: str):
+  mes = discord.Embed(title=F":notebook: Help of {name} :musical_note:", color=0xa3ff66)
+
+  mes.add_field(name=":desktop: Useage",                     value=F"`{prefix} <sub command>`", inline=False)
+  mes.add_field(name=":page_with_curl: List of subcommands", value=HELP_MES_SCMD, inline=False)
+  mes.add_field(name=":u55b6: About closed time",            value=HELP_MES_CLTM.format(prefix, prefix), inline=False)
+
+  mes.set_footer(text=name)
+
+  await message.reply(embed=mes)
   return

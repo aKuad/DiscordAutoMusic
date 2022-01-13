@@ -27,6 +27,7 @@ fp = open("conf.json", "r")
 CONF = loads(fp.read())
 fp.close()
 BOT_TOKEN = CONF["token"]
+COM_PREFIX = CONF["prefix"]
 MUSIC_PATH = CONF["music_dir"]
 MUSIC_PATH_CL = CONF["music_close"]
 
@@ -40,7 +41,7 @@ async def on_ready():
   print("Music close: %s" % MUSIC_PATH_CL)
 
   # Status set
-  await client.change_presence(activity=discord.Game(name="To get help: !ncs h"))
+  await client.change_presence(activity=discord.Game(name=F"To get help: {COM_PREFIX} h"))
 
   # Quit
   return
@@ -61,7 +62,7 @@ async def on_message(message: discord.Message):
   com = message.content.split(" ")
 
   # Ignore non command message
-  if com[0] != "!ncs":
+  if com[0] != COM_PREFIX:
     return
 
   # When no subcommand
@@ -71,7 +72,7 @@ async def on_message(message: discord.Message):
 
   # Command call
   if com[1] == "h" or com[1] == "help":
-    await dcommands.help(message, client.user.name)
+    await dcommands.help(message, client.user.name, COM_PREFIX)
   elif com[1] == "c" or com[1] == "connect" or com[1] == "p" or com[1] == "play":
     await dcommands.play(message, discordVClients, com)
   elif com[1] == "dc" or com[1] == "disconnect" or com[1] == "st" or com[1] == "stop":

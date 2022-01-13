@@ -1,5 +1,6 @@
 {
   "token": "BOT.TOKEN",
+  "prefix": "!ncs",
   "music_dir": "/home/user/DiscordAutoMusic/musics/*.mp3",
   "music_close": "/home/user/DiscordAutoMusic/close.mp3"
 }

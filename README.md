@@ -27,13 +27,8 @@ Please use it with self-liability.
 
 All commands except 'help' require user's voice connection.
 
-`!ncs` is default prefix. (I started development it because of NCS music playing. So I specify the prefix because of the reason.)
-
-If you want change it, please modify line 64 in `main.py`.
-
-> if com[0] != "!ncs":
-
-(However, the help message does not change automatically.)
+`!ncs` is default prefix. (I started development it because of NCS music playing. So I specify the prefix.)
+To change it, modify `prefix` key in `conf.json`.
 
 ### Sub commands
 
@@ -78,11 +73,15 @@ pip install discord.py[voice] pyexifinfo
 ### 2. Make `conf.json`
 
 Please copy `conf_sample.json` to `conf.json` and edit.
+This config file required too.
 
 The json file has these config.
 
 * `token` (Required)
   * Specify your discord bot token.
+* `prefix` (Required)
+  * Specify command prefix.
+  * In default `!ncs`.
 * `music_dir` (Required)
   * Specify sound file(s) path for normal music.
   * Using wildcard `*` or specify directory, you can specify multiple files.
