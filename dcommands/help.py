@@ -14,23 +14,23 @@ import discord
 # Messages definitions
 HELP_MES_SCMD = \
 """`h           , help            ` Print this help
-`c [volume]  , connect [volume]` Connect and start music playing
-`                              ` (with setting volume to [volume])
-`p [volume]  , play [volume]   ` - (same as `c`)
-`dc          , disconnect      ` Stop music playing and disconnect
-`st          , stop            ` - (same as `dc`)
-`sk          , skip            ` Skip and play next music
-`v [volume]  , volume [volume] ` Print current volume or set volume to [volume]
-`                              ` (accept from next music)
-`i           , info            ` Print current music information
-`cl [st] [ed], close [st] [ed] ` Print current closed time or set closed time
-`r [st] [ed] , rest [st] [ed]  ` - (same as `cl`)"""
+`c [vol]     , connect [vol]  ` Connect and start music playing
+`                             ` (with setting volume to [vol])
+`p [vol]     , play [vol]     ` - (same as `c`)
+`dc          , disconnect     ` Stop music playing and disconnect
+`st          , stop           ` - (same as `dc`)
+`sk          , skip           ` Skip and play next music
+`v [vol]     , volume [vol]   ` Print current volume or set volume to [vol]
+`                             ` (accept from next music)
+`i           , info           ` Print current music information
+`cl [st] [ed], close [st] [ed]` Print current closed time or set closed time
+`r [st] [ed] , rest [st] [ed] ` - (same as `cl`)"""
 
 HELP_MES_CLTM = \
 """Between the time [st] to [ed], music will be play only closing music.
 Argument format of [st] [ed] is `HH:MM`.
 -- example: `!ncs cl 1:00 7:00`
-To specifying same time, disable closing time.
+To disable closing time, specify same time.
 -- example: `!ncs cl 0:00 0:00`"""
 
 HELP_MES = discord.Embed(title=":notebook: Help of :musical_note:", color=0xa3ff66)

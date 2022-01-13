@@ -38,18 +38,18 @@ If you want change it, please modify line 64 in `main.py`.
 ### Sub commands
 
 ```txt
-h           , help             Print this help
-c [volume]  , connect [volume] Connect and start music playing
-                               (with setting volume to [volume])
-p [volume]  , play [volume]      (same as `c`)
-dc          , disconnect       Stop music playing and disconnect
-st          , stop               (same as `dc`)
-sk          , skip             Skip and play next music
-v [volume]  , volume [volume]  Print current volume or set volume to [volume]
-                               (accept from next music)
-i           , info             Print current music information
-cl [st] [ed], close [st] [ed]  Print current closed time or set closed time
-r [st] [ed] , rest [st] [ed]     (same as `cl`)
+h           , help            Print this help
+c [vol]     , connect [vol]   Connect and start music playing
+                              (with setting volume to [vol])
+p [vol]     , play [vol]        (same as `c`)
+dc          , disconnect      Stop music playing and disconnect
+st          , stop              (same as `dc`)
+sk          , skip            Skip and play next music
+v [vol]     , volume [vol]    Print current volume or set volume to [vol]
+                              (accept from next music)
+i           , info            Print current music information
+cl [st] [ed], close [st] [ed] Print current closed time or set closed time
+r [st] [ed] , rest [st] [ed]    (same as `cl`)
 ```
 
 ### About closing time
@@ -59,7 +59,7 @@ Argument format of [st] [ed] is `HH:MM`.
 
 > example: `!ncs cl 1:00 7:00`
 
-To specifying same time, disable closing time.
+To disable closing time, specify same time.
 
 > example: `!ncs cl 0:00 0:00`
 
@@ -81,12 +81,12 @@ Please copy `conf_sample.json` to `conf.json` and edit.
 
 The json file has these config.
 
-* "token" (Required)
+* `token` (Required)
   * Specify your discord bot token.
-* "music_dir" (Required)
+* `music_dir` (Required)
   * Specify sound file(s) path for normal music.
   * Using wildcard `*` or specify directory, you can specify multiple files.
-* "music_close" (Optional)
+* `music_close` (Optional)
   * Specify sound file path for closing music.
   * It option can specify only single file.
   * If it specified `""` (nothing), closing-time function will be disabled.
