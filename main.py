@@ -85,6 +85,8 @@ async def on_message(message: discord.Message):
     await dcommands.info(message, discordVClients)
   elif com[1] == "cl" or com[1] == "close" or com[1] == "r" or com[1] == "rest":
     await dcommands.close(message, discordVClients, com)
+  else:
+    await message.reply(F":stop_sign: Unknown subcommand `{com[1]}`.")
 
   # Quit
   return
