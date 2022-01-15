@@ -15,7 +15,7 @@ from pyexifinfo import information
 
 # Messages definitions
 INFO_MES = \
-""":information_source: Info of current playing music.
+""":information_source: Information of current playing music.
 > :file_folder: **`FileName`**: {}
 > :musical_note: **`Title   `**: {}
 > :bust_in_silhouette: **`Artist  `**: {}
