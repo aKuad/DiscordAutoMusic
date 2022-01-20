@@ -13,7 +13,7 @@ import discord
 
 # Messages definitions
 HELP_MES_SCMD = \
-"""`h           , help            ` Print this help
+"""`h           , help           ` Print this help
 `c [vol]     , connect [vol]  ` Connect and start music playing
 `                             ` (with setting volume to [vol])
 `p [vol]     , play [vol]     ` - (same as `c`)
