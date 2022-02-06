@@ -67,7 +67,7 @@ async def on_message(message: discord.Message):
 
   # When no subcommand
   if len(com) == 1:
-    await dcommands.help(message, client.user.name)
+    await dcommands.help(message, client.user.name, COM_PREFIX)
     return
 
   # Command call
