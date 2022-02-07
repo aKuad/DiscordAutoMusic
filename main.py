@@ -36,9 +36,14 @@ MUSIC_PATH_CL = CONF["music_close"]
 @client.event
 async def on_ready():
   # Message of ready in console
-  print("Ready to play.")
+  print("--- Ready to play ---")
   print("Music dir  : %s" % MUSIC_PATH)
   print("Music close: %s" % MUSIC_PATH_CL)
+  print("%d musics are loaded" % discordVClients.mCount)
+  if(discordVClients.getCloseMusic() != ""):
+    print("Closing time is enable")
+  else:
+    print("Closing time is disable")
 
   # Status set
   await client.change_presence(activity=discord.Game(name=F"To get help: {COM_PREFIX} h"))
