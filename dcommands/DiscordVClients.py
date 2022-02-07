@@ -132,7 +132,7 @@ class DiscordVClients:
 
 
   # method - Closing music path get
-  def getVCliCloseMusic(self):
+  def getCloseMusic(self):
     return self.__mClose
 
 

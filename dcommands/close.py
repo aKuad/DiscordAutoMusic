@@ -26,7 +26,7 @@ async def close(message: Message, vcls: DiscordVClients, com: list):
     return
 
   # If not setted closing music
-  if vcls.getVCliCloseMusic() == "":
+  if vcls.getCloseMusic() == "":
     await message.reply(":stop_sign: Sorry, but closing music is not specified by moderator. To use this function, please contact to moderator.")
     return
 
